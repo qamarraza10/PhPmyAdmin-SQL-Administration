@@ -1,0 +1,55 @@
+Solution to Cloudflare Blocking SQL File Uploads
+
+
+When uploading an SQL file to the server via phpMyAdmin triggers a Cloudflare block, follow these two key steps to allow your IP and enable the import safely:
+
+                                                                                                                                                                                          1. Check Firewall Events in Cloudflare
+Navigate to the Cloudflare dashboard.
+
+Go to Security > Firewall > Overview.
+
+Review recent firewall events to identify if and why your IP or requests to the import URL are being blocked.
+
+Note the specific firewall rules or actions triggering the block for better troubleshooting.
+
+                                                                                                                                                                                    2. Whitelist Your IP Address with a Custom Firewall Rule
+In Cloudflare dashboard, go to Security > WAF (Web Application Firewall) > Managed Rules > Custom Rules (or Security > Firewall > Tools depending on your Cloudflare plan).
+
+Create a New Custom Rule with the following settings:
+
+Rule name:
+e.g., Allow My IP for Import
+
+Expression:
+Use the Edit expression option and enter the combined expression to allow your IP only on the import URL:
+
+plaintext
+Copy
+((ip.src eq 192.168.1.5 and http.request.uri contains "/index.php?route=/server/import")
+Replace YOUR_IP_ADDRESS with your actual public IP (find it at https://whatismyipaddress.com/).
+
+Action:
+Select Skip
+
+WAF Components to skip:
+Check at least one, for example, All managed rules (this is required for the Skip action).
+
+Log matching requests:
+Enable this to monitor the rule’s effect.
+
+Place at:
+Select First to ensure highest priority.
+
+Deploy the rule.
+
+Important Notes
+This rule will only disable Cloudflare WAF checks for your IP address when accessing the specific import URL, minimizing security risks.
+
+Make sure your IP is static or update the rule if your IP changes.
+
+Keep monitoring firewall logs to ensure no unexpected traffic bypasses protection.
+
+After completing the import, you can disable or adjust the rule if desired for added security.
+
+This method safely allows you to upload SQL files without broad reduction in security or exposing your entire site.
+
