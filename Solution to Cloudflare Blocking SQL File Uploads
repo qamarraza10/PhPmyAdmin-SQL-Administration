@@ -3,7 +3,7 @@ Solution to Cloudflare Blocking SQL File Uploads
 
 When uploading an SQL file to the server via phpMyAdmin triggers a Cloudflare block, follow these two key steps to allow your IP and enable the import safely:
 
-                                                                                                                                                                                          1. Check Firewall Events in Cloudflare
+                                                                                  1. Check Firewall Events in Cloudflare
 Navigate to the Cloudflare dashboard.
 
 Go to Security > Firewall > Overview.
@@ -12,7 +12,7 @@ Review recent firewall events to identify if and why your IP or requests to the 
 
 Note the specific firewall rules or actions triggering the block for better troubleshooting.
 
-                                                                                                                                                                                    2. Whitelist Your IP Address with a Custom Firewall Rule
+                                                                                  2. Whitelist Your IP Address with a Custom Firewall Rule
 In Cloudflare dashboard, go to Security > WAF (Web Application Firewall) > Managed Rules > Custom Rules (or Security > Firewall > Tools depending on your Cloudflare plan).
 
 Create a New Custom Rule with the following settings:
