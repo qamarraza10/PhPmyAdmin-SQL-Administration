@@ -25,8 +25,8 @@ Use the Edit expression option and enter the combined expression to allow your I
 
 plaintext
 Copy
-((ip.src eq 192.168.1.5 and http.request.uri contains "/index.php?route=/server/import")
-Replace YOUR_IP_ADDRESS with your actual public IP (find it at https://whatismyipaddress.com/).
+(ip.src eq 192.168.1.5 and http.request.uri contains "/index.php?route=/server/import")
+Replace YOUR_IP_ADDRESS with your actual public IP (find it at https://whatismyipaddress.com).
 
 Action:
 Select Skip
